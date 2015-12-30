@@ -12,6 +12,8 @@ namespace Handle_KNSER.Entities
         public int MemberId { get; set; }
 
         public int KNSId { get; set; }
+
+        public string UserId { get; set; }
         public string Fullname { get; set; }
         public DateTime BirthDate { get; set; }
         public string Address { get; set; }
@@ -22,6 +24,8 @@ namespace Handle_KNSER.Entities
         public int Term { get; set; }
 
         public string KNSRole { get; set; }
+
+        public bool isActive { get; set; }
 
     }
 }
