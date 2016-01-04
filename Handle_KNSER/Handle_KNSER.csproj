@@ -168,8 +168,6 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery.signalR-2.1.2.js" />
-    <Content Include="Scripts\jquery.signalR-2.1.2.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +175,7 @@
     <Compile Include="AuthContext.cs" />
     <Compile Include="AuthRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\LetterController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
@@ -187,6 +186,7 @@
     <Compile Include="Entities\Event.cs" />
     <Compile Include="Entities\Letter.cs" />
     <Compile Include="Entities\Member.cs" />
+    <Compile Include="Entities\MemberUser.cs" />
     <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\Participant.cs" />
     <Compile Include="Entities\RefreshToken.cs" />
@@ -196,6 +196,7 @@
     </Compile>
     <Compile Include="Helper.cs" />
     <Compile Include="Hubs\NotificationHub.cs" />
+    <Compile Include="Hubs\RequestHub.cs" />
     <Compile Include="Migrations\201512140848127_ChangedDatabaseName.cs" />
     <Compile Include="Migrations\201512140848127_ChangedDatabaseName.Designer.cs">
       <DependentUpon>201512140848127_ChangedDatabaseName.cs</DependentUpon>
@@ -220,10 +221,51 @@
     <Compile Include="Migrations\201512251647037_Approval_Requests.Designer.cs">
       <DependentUpon>201512251647037_Approval_Requests.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512311007005_LeaderEvent_DBase.cs" />
+    <Compile Include="Migrations\201512311007005_LeaderEvent_DBase.Designer.cs">
+      <DependentUpon>201512311007005_LeaderEvent_DBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512311012305_Event_Member.cs" />
+    <Compile Include="Migrations\201512311012305_Event_Member.Designer.cs">
+      <DependentUpon>201512311012305_Event_Member.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512311014280_Event_Member_id.cs" />
+    <Compile Include="Migrations\201512311014280_Event_Member_id.Designer.cs">
+      <DependentUpon>201512311014280_Event_Member_id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512311015315_Event_Member_change.cs" />
+    <Compile Include="Migrations\201512311015315_Event_Member_change.Designer.cs">
+      <DependentUpon>201512311015315_Event_Member_change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512311016457_Member_Leader.cs" />
+    <Compile Include="Migrations\201512311016457_Member_Leader.Designer.cs">
+      <DependentUpon>201512311016457_Member_Leader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512311039480_EventDB.cs" />
+    <Compile Include="Migrations\201512311039480_EventDB.Designer.cs">
+      <DependentUpon>201512311039480_EventDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601020730521_AspUserMember_DB.cs" />
+    <Compile Include="Migrations\201601020730521_AspUserMember_DB.Designer.cs">
+      <DependentUpon>201601020730521_AspUserMember_DB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601021045543_Participant_DB.cs" />
+    <Compile Include="Migrations\201601021045543_Participant_DB.Designer.cs">
+      <DependentUpon>201601021045543_Participant_DB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601030752486_PartScore_ParticipantsDB.cs" />
+    <Compile Include="Migrations\201601030752486_PartScore_ParticipantsDB.Designer.cs">
+      <DependentUpon>201601030752486_PartScore_ParticipantsDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601030914180_MemberUserDB.cs" />
+    <Compile Include="Migrations\201601030914180_MemberUserDB.Designer.cs">
+      <DependentUpon>201601030914180_MemberUserDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\ExternalLoginModels.cs" />
     <Compile Include="Models\InfomationModel.cs" />
+    <Compile Include="Models\LetterRequest.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\FacebookAuthProvider.cs" />
@@ -264,6 +306,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512251647037_Approval_Requests.resx">
       <DependentUpon>201512251647037_Approval_Requests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512311007005_LeaderEvent_DBase.resx">
+      <DependentUpon>201512311007005_LeaderEvent_DBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512311012305_Event_Member.resx">
+      <DependentUpon>201512311012305_Event_Member.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512311014280_Event_Member_id.resx">
+      <DependentUpon>201512311014280_Event_Member_id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512311015315_Event_Member_change.resx">
+      <DependentUpon>201512311015315_Event_Member_change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512311016457_Member_Leader.resx">
+      <DependentUpon>201512311016457_Member_Leader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512311039480_EventDB.resx">
+      <DependentUpon>201512311039480_EventDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601020730521_AspUserMember_DB.resx">
+      <DependentUpon>201601020730521_AspUserMember_DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601021045543_Participant_DB.resx">
+      <DependentUpon>201601021045543_Participant_DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601030752486_PartScore_ParticipantsDB.resx">
+      <DependentUpon>201601030752486_PartScore_ParticipantsDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601030914180_MemberUserDB.resx">
+      <DependentUpon>201601030914180_MemberUserDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -13,7 +13,8 @@ namespace Handle_KNSER
         public AuthContext()
             : base("KNSERDB")
         {
-
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<Client> Clients { get; set; }
@@ -23,6 +24,7 @@ namespace Handle_KNSER
         public DbSet<Event> Events { get; set; }
         public DbSet<Letter> Letters { get; set; }
         public DbSet<Request> Requests { get; set; }
+
         public DbSet<Participant> Participants { get; set; }
         public DbSet<Notification> Notifications { get; set; }
 
